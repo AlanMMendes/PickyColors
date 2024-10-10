@@ -1,0 +1,38 @@
+.sidebar {
+  z-index: 10;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  height: 50%;
+  width: 0%; /* Largura fechada */
+  background-color: #333;
+  color: white;
+  overflow: hidden; /* Oculta o conteúdo extra */
+  margin: 1rem;
+  border-radius: 10%;
+}
+
+.sidebar.open {
+  width: 30%; /* Largura expandida */
+}
+
+.sidebar-content {
+  padding: 20px;
+}
+
+.toggle-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #444;
+  border: none;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.toggle-button:hover {
+  background-color: #555;
+}

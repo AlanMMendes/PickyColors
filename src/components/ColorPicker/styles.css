@@ -1,0 +1,28 @@
+.color-picker {
+  position: relative;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.color-preview {
+  width: 30px;
+  height: 30px;
+  border: 2px solid white; /* Borda personalizada */
+  margin-right: 0px; /* Espaço entre o ícone e o texto */
+  border-radius: 5px; /* Bordas arredondadas */
+  cursor: pointer; /* Muda o cursor para ponteiro */
+}
+
+.popover {
+  position: absolute;
+  z-index: 2; /* Para que o seletor de cores fique acima de outros elementos */
+}
+
+.cover {
+  position: fixed; /* Para cobrir toda a tela quando o seletor estiver aberto */
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}

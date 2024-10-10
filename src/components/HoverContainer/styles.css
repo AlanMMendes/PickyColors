@@ -1,0 +1,25 @@
+.hover-container {
+  position: relative;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #3498db;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  width: 5rem;
+  height: 5rem;
+}
+
+.hover-content {
+  width: 100%;
+  height: 100%;
+  opacity: 0; /* Inicialmente invisível */
+  transition: opacity 0.3s ease; /* Animação suave para opacidade */
+  position: absolute; /* Permite posicionar em relação ao container */
+}
+
+.hover-container:hover .hover-content {
+  opacity: 1; /* Torna visível ao passar o mouse */
+}
