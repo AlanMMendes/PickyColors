@@ -1,37 +1,18 @@
-import chroma from "chroma-js";
 import { useState } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import ColorPicker from "./components/ColorPicker";
 import PalettsColor from "./components/PaletteColor";
 import Sidebar from "./components/Sidebar";
-import { hexToRgb } from "./utils";
+import { generateColors, getContrastYIQ, hexToRgb } from "./utils";
 
 function App() {
   const [baseColor, setBaseColor] = useState("#3498db");
-  const [open, setOpen] = useState(false);
-  const size = 40;
-  const middle = size / 2;
-
-  const generateColors = (color) => {
-    const colors = [];
-    for (let i = 0; i < size; i++) {
-      colors.push(
-        chroma(color)
-          ?.brighten(i / middle)
-          ?.hex()
-      );
-    }
-    return colors;
-  };
-  const colors = generateColors(baseColor);
+  const colors = generateColors(baseColor, 40);
 
   const handleDataFromChild = (data) => {
-    console.log(data);
     setBaseColor(data);
-  };
-
-  const handleOpen = () => {
-    setOpen(!open);
   };
 
   return (
@@ -43,7 +24,8 @@ function App() {
         alignItems: "center",
       }}
     >
-      <Sidebar isOpen={open} />
+      <ToastContainer />
+
       <div
         style={{
           display: "flex",
@@ -52,6 +34,7 @@ function App() {
           borderRadius: "2rem",
           background: baseColor,
           width: "50%",
+          zIndex: 2,
         }}
       >
         <div
@@ -76,6 +59,7 @@ function App() {
                 justifyContent: "start",
                 alignItems: "center",
                 width: "100%",
+                color: getContrastYIQ(baseColor),
               }}
             >
               HEX
@@ -90,6 +74,7 @@ function App() {
                 border: "transparent",
                 outline: "none",
                 outlineColor: "transparent",
+                color: getContrastYIQ(baseColor),
               }}
               type="text"
             />
@@ -111,6 +96,7 @@ function App() {
                 justifyContent: "start",
                 alignItems: "center",
                 width: "100%",
+                color: getContrastYIQ(baseColor),
               }}
             >
               RGB
@@ -125,6 +111,7 @@ function App() {
                 border: "transparent",
                 outline: "none",
                 outlineColor: "transparent",
+                color: getContrastYIQ(baseColor),
               }}
               type="text"
             />
@@ -143,8 +130,22 @@ function App() {
         }}
       >
         {colors?.map((color, index) => (
-          <PalettsColor open={handleOpen} key={index} bgColor={color} />
+          <PalettsColor width={100} height={100} key={index} bgColor={color} />
         ))}
+      </div>
+
+      <div
+        style={{
+          display: "flex",
+          alignContent: "end",
+          position: "fixed",
+          bottom: "0",
+          right: "0",
+          margin: "1rem",
+          zIndex: 10,
+        }}
+      >
+        <Sidebar />
       </div>
     </div>
   );

@@ -3,24 +3,25 @@
   display: flex;
   align-items: center;
   position: relative;
+  z-index: 100;
 }
 
 .color-preview {
   width: 30px;
   height: 30px;
-  border: 2px solid white; /* Borda personalizada */
-  margin-right: 0px; /* Espaço entre o ícone e o texto */
-  border-radius: 5px; /* Bordas arredondadas */
-  cursor: pointer; /* Muda o cursor para ponteiro */
+  border: 2px solid white;
+  margin-right: 0px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .popover {
   position: absolute;
-  z-index: 2; /* Para que o seletor de cores fique acima de outros elementos */
+  z-index: 2;
 }
 
 .cover {
-  position: fixed; /* Para cobrir toda a tela quando o seletor estiver aberto */
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;

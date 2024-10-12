@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { HexColorPicker } from "react-colorful";
 import { CiPickerHalf } from "react-icons/ci";
+import { getContrastYIQ } from "../../utils";
 import "./styles.css"; // Importa o CSS para o componente
 
 const ColorPicker = ({ sendColor }) => {
-  const [color, setColor] = useState("#3498db"); // Cor inicial
+  const [color, setColor] = useState("#3498db");
   const [displayColorPicker, setDisplayColorPicker] = useState(false);
 
   return (
@@ -13,18 +14,19 @@ const ColorPicker = ({ sendColor }) => {
         onClick={() => setDisplayColorPicker(!displayColorPicker)}
         style={{
           backgroundColor: "transparent",
-          border: "0.5px solid white",
+          border: "transparent",
           borderRadius: "25%",
           width: "2rem",
           height: "2rem",
           cursor: "pointer",
           display: "flex",
           alignItems: "center",
+          zIndex: 0,
         }}
       >
         <CiPickerHalf
           style={{
-            color: "white",
+            color: getContrastYIQ(color),
             fontSize: "1.5rem",
           }}
         />
@@ -40,7 +42,12 @@ const ColorPicker = ({ sendColor }) => {
           }}
         >
           <div className="cover" onClick={() => setDisplayColorPicker(false)} />
-          <HexColorPicker color={color} onChange={sendColor} />
+          <HexColorPicker
+            color={color}
+            onChange={(event) => {
+              sendColor(event), setColor(event);
+            }}
+          />
         </div>
       )}
     </div>
